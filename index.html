@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+  <title>Document</title>
+</head>
+<body>
+  <div class="clock">
+    <div class="box">
+      <div class="hour" id="hourL">
+        <div class="b1">0</div>
+      </div>
+      <div class="hour" id="hourR">
+        <div class="b2">0</div>
+      </div>
+      <p>:</p>
+      <div class="min" id="minL">
+        <div class="b3">0</div>
+      </div>
+      <div class="min" id="minR">
+        <div class="b4">0</div>
+      </div>
+      <p>:</p>
+      <div class="sec" id="secL">
+        <div class="b5">0</div>
+      </div>
+      <div class="sec" id="secR">
+        <div class="b6">0</div>
+      </div>
+      <p>:</p>
+      <div class="msec" id="msecL">
+        <div class="b7">0</div>
+      </div>
+      <div class="msec" id="msecR">
+        <div class="b8">0</div>
+      </div>
+    </div>
+    <!-- <div class="weekdays" id="week">Sunday</div> -->
+    <button onclick="strstp()">click</button>
+    <button onclick="reset()">Reset</button>
+    <button onclick="addlist()">Add to list</button>
+    <div class="head" style="font-size: 3vw; margin: 0 0 0 10px;">
+      Table:
+    </div>
+    <div class="tb">
+        <div class="tbody2">
+            <div class="row">
+                <div class="c1">Lap</div>
+                <div class="c2">Lap Time</div>
+                <div class="c2">Total</div>
+            </div>
+        </div>
+        <div class="tbody" id="tbody"></div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
