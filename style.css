@@ -24,7 +24,7 @@
     align-items: center;
     padding: 0 10px;
 }
-.hour,.min,.sec,.msec{
+.time{
     position: relative;
     width : 80px;
     margin: 0px 5px;
@@ -33,7 +33,7 @@
     font-size: 100px;
     overflow: hidden;
 }
-.b1,.b2,.b3,.b4,.b5,.b6,.b7,.b8{
+.b{
     height: 100%;
     text-align: center;
     position: absolute;
@@ -85,3 +85,5 @@ p{
     align-self: center;
     padding:0 2vw 0 0;
 }
+
+
