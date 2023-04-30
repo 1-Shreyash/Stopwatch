@@ -116,16 +116,18 @@ function updtList(){
         let str="",str2="";
         tableBody = document.getElementById('tbody')
         ItemJsonArrayStr3 = localStorage.getItem('timeList');
-        ItemJsonArray3 = JSON.parse(ItemJsonArrayStr3); 
+        ItemJsonArray3 = JSON.parse(ItemJsonArrayStr3);
         if(ItemJsonArray3 != null){
+            let c = 0;
             ItemJsonArray3.forEach((element,index)=>{
-                t1 = converter(element[0]);
-                t2 = converter(element[1]);
+                t1 = converter(element-c);
+                t2 = converter(element);
+                c = element;
                 str2=str
                 str = `
                 <div class="row">
                   <div class="c1">${index+1}</div>
-                  <div class="c2">${Math.floor(t1[0]/10)%10}${t1[0]%10}:${Math.floor(t1[1]/10)%10}${t1[1]%10}:${Math.floor(t1[2]/10)%10}${t1[2]%10}.${Math.floor(t1[3]/10)%10}${t1[3]%10}</div>
+                  <div class="c2">+${Math.floor(t1[0]/10)%10}${t1[0]%10}:${Math.floor(t1[1]/10)%10}${t1[1]%10}:${Math.floor(t1[2]/10)%10}${t1[2]%10}.${Math.floor(t1[3]/10)%10}${t1[3]%10}</div>
                   <div class="c2">${Math.floor(t2[0]/10)%10}${t2[0]%10}:${Math.floor(t2[1]/10)%10}${t2[1]%10}:${Math.floor(t2[2]/10)%10}${t2[2]%10}.${Math.floor(t2[3]/10)%10}${t2[3]%10}</div>
                 </div>
                 `
@@ -137,24 +139,24 @@ function updtList(){
 }
 function addlist(){
     if(m==1){
-        x4 = new Date();
-        if(localStorage.getItem('LastAddListTime')==null)
-            localStorage.setItem('LastAddListTime',x4)
+        // x4 = new Date();
+        // if(localStorage.getItem('LastAddListTime')==null)
+        //     localStorage.setItem('LastAddListTime',x4)
 
-        x5 = Date.parse(localStorage.getItem('LastAddListTime'))
+        // x5 = Date.parse(localStorage.getItem('LastAddListTime'))
 
         if(localStorage.getItem('timeList')==null){
             ItemJsonArray3 = [];
-            ItemJsonArray3.push([x4-x5, total+(x3-x1)])
+            ItemJsonArray3.push(total+(x3-x1))
             localStorage.setItem('timeList', JSON.stringify(ItemJsonArray3))
         }
         else{
             ItemJsonArrayStr3 = localStorage.getItem('timeList');
             ItemJsonArray3 = JSON.parse(ItemJsonArrayStr3);
-            ItemJsonArray3.push([x4-x5, total+(x3-x1)]);
+            ItemJsonArray3.push(total+(x3-x1));
             localStorage.setItem('timeList',JSON.stringify(ItemJsonArray3));
         }
-        localStorage.setItem('LastAddListTime',x4)
+        // localStorage.setItem('LastAddListTime',x4)
         //add elements to the table
         updtList()
     }

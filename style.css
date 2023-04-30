@@ -48,19 +48,19 @@ p{
 .visible{
     height: 50vh;
     border: 1px solid red;
-    overflow: hidden;
+    /* overflow: hidden; */
     visibility: visible;
 }
 .tb{
     height: 50vh;
     border: 1px solid red;
-    overflow: hidden;
+    /* overflow: hidden; */
     visibility: hidden;
 }
 .tbody{
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: 86%;
     width: 100vw;
     overflow:scroll;
     font-size: 1.3vw;
