@@ -34,12 +34,9 @@ ItemJsonArray = JSON.parse(ItemJsonArrayStr);
 total = ItemJsonArray[0];
 m = ItemJsonArray[1];
 if(m==1){
-    m=0
     ItemJsonArrayStr2 = localStorage.lastTime;
-    x4 = Date.parse(ItemJsonArrayStr2);
-    x5 = new Date()
-    total += x5 - x4
-    strstp()
+    x1 = Date.parse(ItemJsonArrayStr2);
+    start();
 }
 else{
     let a;
@@ -59,6 +56,7 @@ else{
 function strstp(){
     if(m==0){
         x1 = new Date();
+        localStorage.setItem('lastTime',x1)
         start();
         m=1;
     }
@@ -119,11 +117,12 @@ function Adding(){
 }
 
 //to save the current time before closing
-window.onbeforeunload = function () {
-    if(m==1){
-        total += x3 - x1;
-        ItemJsonArray=[total, m];
-    }
-    localStorage.setItem('StpwatchTtime', JSON.stringify(ItemJsonArray))
-    localStorage.setItem('lastTime',x3)
-}
+// window.onbeforeunload = function () {
+//     if(m==1){
+//         ItemJsonArray=[total, m];
+//     }
+//     localStorage.setItem('StpwatchTtime', JSON.stringify(ItemJsonArray))
+//     localStorage.setItem('lastTime',x1)
+// }
+// console.log(total)
+// console.log(x5-x4)
