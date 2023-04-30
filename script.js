@@ -21,10 +21,11 @@ function update(){
     )
 }
 
-let myInterval,x1=0,x2,x3=0,total,x4,x5;
+let myInterval,x1=0,x2,x3=0,total;
 let m,countx=0;
 
 //setting initial state of the clock with reference to last time when tab was opened
+updtList() //setting list state
 if(localStorage.getItem('StpwatchTtime')==null){
     ItemJsonArray = [0,0,0];
     localStorage.setItem('StpwatchTtime', JSON.stringify(ItemJsonArray))
@@ -93,36 +94,68 @@ function reset(){
         total = 0;
         update();
         ItemJsonArray = [total,0];
-        localStorage.setItem('StpwatchTtime', JSON.stringify(ItemJsonArray))
+        localStorage.setItem('StpwatchTtime', JSON.stringify(ItemJsonArray));
+
+        //resetting list
+        ItemJsonArray3 = [];
+        localStorage.setItem('timeList', JSON.stringify(ItemJsonArray3))
+        updtList()
+        tbl.setAttribute('class','tb')
     }
 }
 
 
-// to store the time
-function addlist(){
-    
-}
-function Adding(){
-    // if(localStorage.getItem('ItemJson')==null){
-    //     ItemJsonArray = [];
-    //     ItemJsonArray.push([tit, desc])
-    //     localStorage.setItem('ItemJson', JSON.stringify(ItemJsonArray))
-    // }
-    // else{
-    //     ItemJsonArrayStr = localStorage.getItem('ItemJson');
-    //     ItemJsonArray = JSON.parse(ItemJsonArrayStr);
-    //     ItemJsonArray.push([tit, desc]);
-    //     localStorage.setItem('ItemJson',JSON.stringify(ItemJsonArray));
-    // }
-}
 
-//to save the current time before closing
-// window.onbeforeunload = function () {
-//     if(m==1){
-//         ItemJsonArray=[total, m];
-//     }
-//     localStorage.setItem('StpwatchTtime', JSON.stringify(ItemJsonArray))
-//     localStorage.setItem('lastTime',x1)
-// }
-// console.log(total)
-// console.log(x5-x4)
+// to store the time
+function updtList(){
+    if(localStorage.getItem('timeList')!=null){
+        if(JSON.parse(localStorage.getItem('timeList')).length == 0)
+            tbl.setAttribute('class','tb') //to keep the tabel invisible
+        else
+            tbl.setAttribute('class','visible') //to make table visible
+        let str="",str2="";
+        tableBody = document.getElementById('tbody')
+        ItemJsonArrayStr3 = localStorage.getItem('timeList');
+        ItemJsonArray3 = JSON.parse(ItemJsonArrayStr3); 
+        if(ItemJsonArray3 != null){
+            ItemJsonArray3.forEach((element,index)=>{
+                t1 = converter(element[0]);
+                t2 = converter(element[1]);
+                str2=str
+                str = `
+                <div class="row">
+                  <div class="c1">${index+1}</div>
+                  <div class="c2">${Math.floor(t1[0]/10)%10}${t1[0]%10}:${Math.floor(t1[1]/10)%10}${t1[1]%10}:${Math.floor(t1[2]/10)%10}${t1[2]%10}.${Math.floor(t1[3]/10)%10}${t1[3]%10}</div>
+                  <div class="c2">${Math.floor(t2[0]/10)%10}${t2[0]%10}:${Math.floor(t2[1]/10)%10}${t2[1]%10}:${Math.floor(t2[2]/10)%10}${t2[2]%10}.${Math.floor(t2[3]/10)%10}${t2[3]%10}</div>
+                </div>
+                `
+                str+=str2
+            })
+            tableBody.innerHTML = str;
+        }
+    }
+}
+function addlist(){
+    if(m==1){
+        x4 = new Date();
+        if(localStorage.getItem('LastAddListTime')==null)
+            localStorage.setItem('LastAddListTime',x4)
+
+        x5 = Date.parse(localStorage.getItem('LastAddListTime'))
+
+        if(localStorage.getItem('timeList')==null){
+            ItemJsonArray3 = [];
+            ItemJsonArray3.push([x4-x5, total+(x3-x1)])
+            localStorage.setItem('timeList', JSON.stringify(ItemJsonArray3))
+        }
+        else{
+            ItemJsonArrayStr3 = localStorage.getItem('timeList');
+            ItemJsonArray3 = JSON.parse(ItemJsonArrayStr3);
+            ItemJsonArray3.push([x4-x5, total+(x3-x1)]);
+            localStorage.setItem('timeList',JSON.stringify(ItemJsonArray3));
+        }
+        localStorage.setItem('LastAddListTime',x4)
+        //add elements to the table
+        updtList()
+    }
+}

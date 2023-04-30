@@ -3,11 +3,11 @@
 *{
   margin: 0;
   padding: 0;
-  font-family: 'Orbitron', sans-serif;
+  font-family: sans-serif;
 }
 .clock{
     width: 100%;
-    height:100vh;
+    min-height:100vh;
     background-color: rgb(175, 186, 195);
     display: flex;
     flex-direction: column;
@@ -45,8 +45,18 @@ p{
 }
 
 
-
-
+.visible{
+    height: 50vh;
+    border: 1px solid red;
+    overflow: hidden;
+    visibility: visible;
+}
+.tb{
+    height: 50vh;
+    border: 1px solid red;
+    overflow: hidden;
+    visibility: hidden;
+}
 .tbody{
     display: flex;
     flex-direction: column;
@@ -65,12 +75,12 @@ p{
     border-bottom: 0.04vw solid grey;
 }
 .c1{
-    width:20%;
+    width:10%;
     height:100%;
     text-align: center;
 }
 .tbody .c2{
-    width: 40%;
+    width: 10%;
     align-self: flex-start;
     padding:0 2vw 0 0;
 }
@@ -81,7 +91,7 @@ p{
     font-size: 1.5vw;
 } 
 .tbody2 .c2{
-    width: 40%;
+    width: 10%;
     align-self: center;
     padding:0 2vw 0 0;
 }
