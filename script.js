@@ -33,16 +33,17 @@ ItemJsonArrayStr = localStorage.getItem('StpwatchTtime');
 ItemJsonArray = JSON.parse(ItemJsonArrayStr);
 total = ItemJsonArray[0];
 m = ItemJsonArray[1];
+ItemJsonArrayStr2 = localStorage.lastTime;
+x1 = Date.parse(ItemJsonArrayStr2);
 if(m==1){
     m=0
-    ItemJsonArrayStr2 = localStorage.lastTime;
-    x4 = Date.parse(ItemJsonArrayStr2);
-    x5 = new Date()
-    total += x5 - x4
-    strstp()
+    x3 = new Date()
+    total += x3-x1
+    strstp(0)
 }
 else{
     let a;
+    x3 = new Date()
     a = converter(total);
     counter[1]= a[0]%10;
     counter[0]=  Math.floor(a[0]/10)%10;
@@ -56,9 +57,14 @@ else{
 }
 
 //fuction used for start stop button
-function strstp(){
+function strstp(f){
     if(m==0){
-        x1 = new Date();
+        if(f==0){
+            ItemJsonArrayStr2 = localStorage.lastTime;
+            x1 = Date.parse(ItemJsonArrayStr2);
+        }
+        if(f==1)
+            x1 = new Date();
         start();
         m=1;
     }
@@ -118,12 +124,12 @@ function Adding(){
     // }
 }
 
-//to save the current time before closing
+//to save the current time before closing browser tab or before refreshing tab, etc.
 window.onbeforeunload = function () {
     if(m==1){
-        total += x3 - x1;
+        // total += x3 - x1;
         ItemJsonArray=[total, m];
     }
     localStorage.setItem('StpwatchTtime', JSON.stringify(ItemJsonArray))
-    localStorage.setItem('lastTime',x3)
+    localStorage.setItem('lastTime',x1)
 }
