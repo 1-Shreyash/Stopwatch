@@ -100,7 +100,7 @@ function reset(){
         ItemJsonArray3 = [];
         localStorage.setItem('timeList', JSON.stringify(ItemJsonArray3))
         updtList()
-        tbl.setAttribute('class','tb')
+        // tbl.setAttribute('class','tb')
     }
 }
 
